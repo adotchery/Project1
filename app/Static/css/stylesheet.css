@@ -1,0 +1,13 @@
+html{
+  background-color: brown;
+  align-self: center;
+}
+.title{
+  padding: 50px;
+  margin: 50px;
+  font-size: 100px;
+  text-align: center;
+}
+form{
+  text-align: center;
+}
