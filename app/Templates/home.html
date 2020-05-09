@@ -8,7 +8,10 @@ To-Do's
 {% for note in notes %}
 <ul>
     <li>
-      {{ note }}
+      {{ note.todo }}
+      <form action="{{url_for('remove')}}" method='DELETE'>
+        <button>DELETE</button>
+      </form>
     </li>
 </ul>
 {% endfor %}
