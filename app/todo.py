@@ -8,7 +8,7 @@ app=Flask(__name__)
 notes = []
 # using counter to add ID's
 counter = 0
-@app.route('/', methods=['POST', 'GET'])
+@app.route('/post', methods=['POST'])
 def event():
     if request.method == 'POST':
         note = request.form.get('note')
@@ -20,13 +20,20 @@ def event():
         notes.append(new_note)
     return render_template("home.html", notes=notes)
 
-@app.route('/delete', methods=['DELETE', 'GET'])
-def remove():
-    if  request.method == 'delete':
-        id = request.form.get('id')
-
+@app.route('/', methods=['GET'])
+def find():
+    if request.method == 'GET':
+        note = request.form.get('note')
 
     return render_template("home.html", notes=notes)
+
+@app.route('/delete', methods=['POST'])
+def delete():
+        for note in notes:
+            if id == request.form.get(id):
+                notes.remove(note)
+
+        return render_template("home.html", notes=notes)
 
 def up():
     global counter
