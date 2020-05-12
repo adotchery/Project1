@@ -9,8 +9,12 @@ To-Do's
 <ul>
     <li>
       {{ user.text }}
+      <form action="{{url_for('delete')}}" method="post">
+        <button>DELETE</button>
+        </form>
     </li>
 </ul>
+</form>
 {% endfor %}
 
 <form action="{{url_for('add')}}" method='post'>

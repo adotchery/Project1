@@ -7,7 +7,7 @@ app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:////Users/alanchery/Desktop/Proj
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 db = SQLAlchemy(app)
-
+db.session.delete
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -26,6 +26,14 @@ def add():
         db.session.commit()
 
         return redirect(url_for('index'))
+
+@app.route('/delete', methods=['POST','GET'])
+def delete():
+    user = User.query.get(1)
+    db.session.delete(user)
+    db.session.commit()
+
+    return redirect(url_for('delete'))
 
 if __name__ == "__main__":
     app.run()
