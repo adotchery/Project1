@@ -5,16 +5,15 @@ To-Do's
 {% endblock %}
 
 {% block body %}
-{% for user in users %}
+{% for todo in todos %}
 <ul>
     <li>
-      {{ user.text }}
+      {{ todo.text }}
       <form action="{{url_for('delete')}}" method="post">
         <button>DELETE</button>
         </form>
     </li>
 </ul>
-</form>
 {% endfor %}
 
 <form action="{{url_for('add')}}" method='post'>

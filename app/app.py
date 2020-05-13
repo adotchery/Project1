@@ -9,31 +9,31 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
 db.session.delete
 
-class User(db.Model):
+class Todo(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     text = db.Column(db.String(200))
     complete = db.Column(db.Boolean)
 
 @app.route('/')
 def index():
-    users = User.query.all()
-    return render_template('different.html', users=users)
+    todos = Todo.query.all()
+    return render_template('different.html', todos=todos)
 
 @app.route('/plus', methods=['POST'])
 def add():
-        user = User(text=request.form['todoitem'], complete=False)
-        db.session.add(user)
+        todos = Todo(text=request.form['todoitem'], complete=False)
+        db.session.add(todos)
         db.session.commit()
 
         return redirect(url_for('index'))
 
 @app.route('/delete', methods=['POST','GET'])
 def delete():
-    user = User.query.get(1)
+    user = Todo.query.filter_by(id=1).delete()
     db.session.delete(user)
     db.session.commit()
 
-    return redirect(url_for('delete'))
+    return redirect(url_for('index'))
 
 if __name__ == "__main__":
     app.run()
