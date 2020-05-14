@@ -27,10 +27,9 @@ def add():
 
         return redirect(url_for('index'))
 
-@app.route('/delete', methods=['POST','GET'])
+@app.route('/delete/<int:todo_id>', methods=['POST','GET'])
 def delete():
-    user = Todo.query.filter_by(id=1).delete()
-    db.session.delete(user)
+    user = Todo.query.filter_by(id=123).delete(todo.id)
     db.session.commit()
 
     return redirect(url_for('index'))
