@@ -9,7 +9,7 @@ To-Do's
 <ul>
     <li>
       {{ todo.text }}
-      <form action="{{url_for('delete')}}" method="post">
+      <form action="{{url_for('delete', todo_id = 1)}}" method="post">
         <button>DELETE</button>
         </form>
     </li>
