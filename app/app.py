@@ -16,8 +16,15 @@ class Todo(db.Model):
 
 @app.route('/')
 def index():
-    todos = Todo.query.all()
+    todos = Todo.query.filter_by(complete=False).all()
+
     return render_template('different.html', todos=todos)
+
+@app.route('/')
+def finished():
+    complete = Todo.query.filter_by(complete=True).all()
+
+    return redirect(url_for('index'), complete=complete)
 
 @app.route('/plus', methods=['POST'])
 def add():

@@ -9,9 +9,9 @@ To-Do's
 {% for todo in todos %}
 <ul>
     <li>
-      {{ todo.text }} """<form action="{{url_for('complete', id = todo.id)}}"
-      method="post">
-      </form>"""
+      {{ todo.text }} <form action="{{url_for('complete', id = todo.id)}}"
+      method="post"><button>Mark as Complete</button>
+      </form>
       <form action="{{url_for('delete', todo_id = todo.id)}}" method="post">
         <button>DELETE</button>
         </form>
@@ -32,6 +32,6 @@ To-Do's
   <li>
     {{ todo.text }}
     </li>
-  {% endfor %}
   </ul>
+{% endfor %}
 {% endblock %}
