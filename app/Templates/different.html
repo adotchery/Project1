@@ -2,14 +2,17 @@
 
 {% block heading %}
 To-Do's
+<h4>Incomplete Items</h4>
 {% endblock %}
 
 {% block body %}
 {% for todo in todos %}
 <ul>
     <li>
-      {{ todo.text }}
-      <form action="{{url_for('delete', todo_id = 1)}}" method="post">
+      {{ todo.text }} """<form action="{{url_for('complete', id = todo.id)}}"
+      method="post">
+      </form>"""
+      <form action="{{url_for('delete', todo_id = todo.id)}}" method="post">
         <button>DELETE</button>
         </form>
     </li>
@@ -23,4 +26,12 @@ To-Do's
   placeholder= "and then..."/>
   <button>Submit</button>
 </form>
+<h4>Completed Items</h4>
+{% for todo in complete %}
+<ul>
+  <li>
+    {{ todo.text }}
+    </li>
+  {% endfor %}
+  </ul>
 {% endblock %}

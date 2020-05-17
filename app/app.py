@@ -27,12 +27,25 @@ def add():
 
         return redirect(url_for('index'))
 
-@app.route('/delete/<todo_id>', methods=['POST','GET'])
+@app.route('/delete/<int:todo_id>', methods=['POST','GET'])
 def delete(todo_id):
-    # print to see of the todo_id route is working
-    print(todo_id)
+    # searches for todo in Todo table
+    todo_id = Todo.query.filter_by(id=todo_id).all()
+    #for the todo selected in todo id, delete that todo ID
+    for todo in todo_id:
+        db.session.delete(todo)
+    #save action
+        db.session.commit()
 
-    return redirect(url_for('index', todo_id = '1'))
+    return redirect(url_for('index', todo_id = 'todo.id'))
+
+@app.route('/complete/<id>', methods=['POST','GET'])
+def complete(id):
+    todo = Todo.query.filter_by(id=int(id)).first()
+    todo.complete = True
+    db.session.commit()
+
+    return redirect(url_for('index'))
 
 if __name__ == "__main__":
     app.run()
