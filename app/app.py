@@ -22,9 +22,9 @@ def index():
 
 @app.route('/')
 def finished():
-    complete = Todo.query.filter_by(complete=True).all()
+    update_todo = Todo.query.filter_by(complete=True).all()
 
-    return redirect(url_for('index'), complete=complete)
+    return render_template('different.html', update_todo=update_todo)
 
 @app.route('/plus', methods=['POST'])
 def add():
